@@ -14,5 +14,5 @@ __"Rss aggregator"__ is a service for aggregating RSS feeds, with the help of wh
 3. Install Dependencies
 `make install`
 
-##Project's link:
+## Project's link:
 https://frontend-project-11-mu.vercel.app/
