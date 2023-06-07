@@ -27,13 +27,13 @@ const updateRSS = (watchedState) => {
       watchedState.posts = [...newPosts, ...watchedState.posts];
     })
     .catch(() => []));
-  const promise = Promise.all(promises)
-    .then(() => {
+  Promise.all(promises)
+    .finally(() => {
       setTimeout(updateRSS, 5000, watchedState);
     });
 };
 
-const getRequest = (url, watchedState) => {
+const getFeed = (url, watchedState) => {
   axios.get(addProxy(url))
     .then((response) => {
       const [feed, posts] = parseData(response.data.contents);
@@ -115,7 +115,7 @@ export default () => {
         watchedState.status = 'loading';
         validate(url, feedsURLs)
           .then(() => {
-            getRequest(url, watchedState);
+            getFeed(url, watchedState);
           })
           .catch((err) => {
             const [error] = err.errors;
